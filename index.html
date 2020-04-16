@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<script src="jquery/jquery-1.12.4.min.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+  // Creamos los arreglos
+  var Argentina=[
+    {key:"Buenos Aires",value:"Buenos Aires"},
+    {key:"Mar del Plata",value:"Mar del Plata"},
+    {key:"Itape",value:"Itape"},
+  ];
+  var Brasil=[
+    {key:"Sao pablo",value:"Sao pablo"},
+    {key:"Brasilia",value:"Brasilia"},
+    {key:"Manaos",value:"Manaos"},
+  ];
+  var Venezuela = [
+    {key:"Caracas",value:"Caracas"},
+    {key:"Mérida",value:"Mérida"},
+    {key:"Valencia",value:"Valencia"},
+  ];
+  // Si la opción padre cambia
+  $("#selector_padre").change(function(){
+    var parent = $(this).val(); // Obtiene el valor del padre
+    switch(parent){ // Usamos un switch para comparar la selección del padre
+      case 'Argentina':
+      list(Argentina);
+      break;
+      case 'Brasil':
+      list(Brasil);
+      break;    
+      case 'Venezuela':
+      list(Venezuela);
+      break;
+      default: // La opción por defecto del hijo está en blanco
+      $("#child_selection").html('');
+      break;
+    }
+  });
+  // Función para seleccionar los hijos
+  function list(array_list){
+    $("#child_selection").html(""); // Resetear las opciones del hijo
+    $(array_list).each(function(i){ // Opciones del hijo
+      $("#child_selection").append("<option value=\""+array_list[i].value+"\">"+array_list[i].key+"</option>");
+    });
+  }
+});
+</script>
+</head>
+<body>  
+<div class="wrapper">
+Categoría: <select name="selector_padre" id="selector_padre">
+  <option value="">Seleccione</option>
+  <option value="Argentina">Argentina</option>
+  <option value="Brasil">Brasil</option>
+  <option value="Venezuela">Venezuela</option>
+</select>
+<select name="child_selection" id="child_selection">
+</select>
+</div>
+</body>
+</html>
